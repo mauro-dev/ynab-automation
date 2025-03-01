@@ -144,6 +144,14 @@ export class StockChecker {
     }
 
     public async getStockValues(holdings: StockHolding[], targetCurrency: string): Promise<StockValue[]> {
-        return Promise.all(holdings.map(h => this.getStockValue(h, targetCurrency)))
+        let results: StockValue[] = [];
+    
+        for (const h of holdings) {
+            results.push(await this.getStockValue(h, targetCurrency)); // Aspetta ogni richiesta prima di passare alla successiva
+        }
+        return results;
     }
+    //public async getStockValues(holdings: StockHolding[], targetCurrency: string): Promise<StockValue[]> {
+    //    return Promise.all(holdings.map(h => this.getStockValue(h, targetCurrency)))
+    //}
 }
