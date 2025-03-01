@@ -147,7 +147,7 @@ export class StockChecker {
         let results: StockValue[] = [];
     
         for (const h of holdings) {
-            console.log(`Fetching stock value for: ${h}`); // Log per ogni richiesta (una alla volta)
+            console.log(`::debug::Fetching stock value for: ${h}`); // Log per ogni richiesta (una alla volta)
             results.push(await this.getStockValue(h, targetCurrency)); // Aspetta ogni richiesta prima di passare alla successiva
         }
         return results;
